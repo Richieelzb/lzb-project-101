@@ -1,5 +1,5 @@
 /////////////////VPC 1 SG/////////////////
-resource "aws_security_group" "control-sg" {
+resource "aws_security_group" "docker-sg" {
   name        = "allow-public-sg-1"
   description = "allow-public-sg-1"
   vpc_id      = module.vpc1.vpc_id
