@@ -1,7 +1,7 @@
 /////////////////VPC 1 SG/////////////////
 resource "aws_security_group" "sg-docker" {
-  name = "${local.Name}-sg-public"
-  vpc_id      = module.vpc1.vpc_id
+  name   = "${local.Name}-sg-public"
+  vpc_id = module.vpc1.vpc_id
 }
 
 resource "aws_security_group_rule" "port-80" {
