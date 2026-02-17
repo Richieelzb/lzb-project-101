@@ -47,6 +47,14 @@ resource "aws_security_group" "ec2-sg" {
 
   ingress {
     description = "TLS from VPC"
+    from_port   = 8888
+    to_port     = 8888
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "TLS from VPC"
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
