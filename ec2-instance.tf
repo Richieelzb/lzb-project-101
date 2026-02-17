@@ -4,7 +4,7 @@ resource "aws_instance" "docker-instance" {
   subnet_id       = module.vpc1.public_subnets[0]
   key_name        = var.key-pair
   user_data       = file("${path.module}/docker-install.sh")
-  security_groups = [aws_security_group.docker-sg.id]
+  security_groups = [aws_security_group.sg-docker.id]
 
   tags = {
     Name = "${local.Name}-docker"

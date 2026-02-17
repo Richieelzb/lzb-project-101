@@ -1,82 +1,43 @@
 /////////////////VPC 1 SG/////////////////
-resource "aws_security_group" "docker-sg" {
-  name        = "allow-public-sg-1"
-  description = "allow-public-sg-1"
-  vpc_id      = module.vpc1.vpc_id
-
-  ingress {
-    description = "TLS from VPC"
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    description = "TLS from VPC"
-    from_port   = 8888
-    to_port     = 8888
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    description = "TLS from VPC"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  tags = {
-    Name = "allow_tls"
-  }
+resource "aws_security_group" "sg-docker" {
+  name = "${local.Name}-sg-public"
 }
 
-resource "aws_security_group" "ec2-sg" {
-  name        = "allow-pvt-sg-1"
-  description = "allow-pvt-sg-1"
-  vpc_id      = module.vpc1.vpc_id
-
-  ingress {
-    description = "TLS from VPC"
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+resource "aws_security_group_rule" "docker-sg" {
+  type            = "ingress"
+  from_port       = 80
+  to_port         = 80
+  protocol        = "tcp"
+  cidr_blocks     = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.sg-docker.id
   }
 
-  ingress {
-    description = "TLS from VPC"
-    from_port   = 8888
-    to_port     = 8888
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+resource "aws_security_group_rule" "docker-sg" {
+  type            = "ingress"
+  from_port       = 22
+  to_port         = 22
+  protocol        = "tcp"
+  cidr_blocks     = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.sg-docker.id
   }
 
-  ingress {
-    description = "TLS from VPC"
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+resource "aws_security_group_rule" "docker-sg" {
+  type            = "ingress"
+  from_port       = 8888
+  to_port         = 8888
+  protocol        = "tcp"
+  cidr_blocks     = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.sg-docker.id
   }
 
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+resource "aws_security_group_rule" "docker-sg" {
+  type            = "egress"
+  from_port       = -1
+  to_port         = -1
+  protocol        = "tcp"
+  cidr_blocks     = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.sg-docker.id
   }
 
-  tags = {
-    Name = "allow_tls"
-  }
-}
+  
+  
