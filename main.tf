@@ -7,16 +7,12 @@ terraform {
   }
 
   backend "s3" {
-    //bucket       = "terraform-bucket-lzb-001" //vodacom account
     bucket = "terraform-practice-lzb-001" //personal account
     key    = "lzb-project-101/terraform.tfstate"
     region = "eu-west-1"
-    //profile      = "default"
-    #use_lockfile = true
   }
 }
 
 provider "aws" {
-  //profile = "default"
   region = var.aws-region
 }

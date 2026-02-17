@@ -7,8 +7,6 @@ resource "aws_instance" "docker-instance" {
   security_groups = [aws_security_group.docker-sg.id]
 
   tags = {
-    #Name = "vm-${count.index}" // using count
-    Name = "${local.Name}-docker" // using for_each
-
+    Name = "${local.Name}-docker"
   }
 }
