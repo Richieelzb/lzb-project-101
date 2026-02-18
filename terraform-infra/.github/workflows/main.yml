@@ -22,7 +22,7 @@ jobs:
     name: Terraform Plan (PRs)
     runs-on: ubuntu-latest   
     env:
-      TF_WORKING_DIR: ./terraform-infra
+      TF_WORKING_DIR: "./terraform-infra"
 
     environment: development
    # if: github.event_name == 'pull_request'
