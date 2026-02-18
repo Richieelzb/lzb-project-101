@@ -61,13 +61,6 @@ jobs:
           AWS_REGION: ${{ vars.AWS_REGION }}
         run: |
           terraform plan -input=false 
-
-      # - name: Upload plan artifact
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: tfplan
-      #     path: ${{ env.TF_WORKING_DIR }}/tfplan.txt
-
       
       - name: Notify if Build Fails
         if: failure()
