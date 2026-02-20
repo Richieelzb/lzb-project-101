@@ -7,9 +7,9 @@ terraform {
   }
 
   backend "s3" {
-    bucket = "terraform-practice-lzb-001" //personal account
+    bucket = "terraform-bucket-lzb-001" //personal account
     key    = "lzb-project-101/terraform.tfstate"
-    region = "eu-west-1"
+    region = "ap-south-1"
   }
 }
 

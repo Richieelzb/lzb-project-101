@@ -1,7 +1,7 @@
 # VPC1 Variables
 vpc_name_vpc1                               = "lzb-project-vpc"
 vpc_cidr_block_vpc1                         = "10.0.0.0/16"
-vpc_availability_zones_vpc1                 = ["eu-west-1a"]
+vpc_availability_zones_vpc1                 = ["ap-south-1a"]
 vpc_public_subnets_vpc1                     = ["10.0.101.0/24"]
 vpc_private_subnets_vpc1                    = ["10.0.1.0/24"]
 vpc_database_subnets_vpc1                   = ["10.0.151.0/24"]

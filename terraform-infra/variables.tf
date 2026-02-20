@@ -6,7 +6,7 @@ variable "instance-type-list" {
 }
 
 variable "key-pair" {
-  default = "lupfumo-key"
+  default = "lupfumo-key-mumbai"
 }
 
 ///VPC Modules-1 ///////////////////////////////////////////////////////////////////////////
@@ -55,7 +55,7 @@ variable "vpc_single_nat_gateway_vpc1" {
 
 //////generic/////////////////////////////
 variable "aws-region" {
-  default = "eu-west-1"
+  default = "ap-south-1"
 }
 
 variable "environment" {
