@@ -33,11 +33,11 @@ FROM public.ecr.aws/amazonlinux/amazonlinux:2023
 # weak dependencies in DNF terminology, thus keeping our installed set of
 # packages as minimal as possible.
 
-# RUN dnf --setopt=install_weak_deps=False install -q -y \
-#     java-21-amazon-corretto-headless \
-#     shadow-utils \
-#     && \
-#     dnf clean all
+RUN dnf --setopt=install_weak_deps=False install -q -y \
+    java-21-amazon-corretto-headless \
+    shadow-utils \
+    && \
+    dnf clean all
 
 # use curl-full to use "telnet://" scheme
 # https://docs.aws.amazon.com/linux/al2023/ug/curl-minimal.html
