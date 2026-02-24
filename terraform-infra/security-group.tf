@@ -22,7 +22,7 @@ resource "aws_security_group_rule" "port-22" {
   security_group_id = aws_security_group.sg-docker.id
 }
 
-resource "aws_security_group_rule" "port-8888" {
+resource "aws_security_group_rule" "port-5000" {
   type              = "ingress"
   from_port         = 5000
   to_port           = 5000
