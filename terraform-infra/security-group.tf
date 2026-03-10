@@ -1,6 +1,6 @@
 /////////////////DOCKER SG/////////////////
 resource "aws_security_group" "sg-docker" {
-  name   = "${local.Name}-sg-public"
+  name   = "${local.Name}-sg-docker"
   vpc_id = module.vpc1.vpc_id
 }
 
@@ -51,7 +51,7 @@ resource "aws_security_group_rule" "allow-all-docker" {
 
 /////////////////KUBERNETES SG/////////////////
 resource "aws_security_group" "sg-kubernetes" {
-  name   = "${local.Name}-sg-public"
+  name   = "${local.Name}-sg-kubernetes"
   vpc_id = module.vpc1.vpc_id
 }
 

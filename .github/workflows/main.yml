@@ -52,16 +52,6 @@ jobs:
         working-directory: ${{ env.TF_WORKING_DIR }}
         run: terraform validate
       
-      - name: Terraform state
-       # id: tfplan
-        working-directory: ${{ env.TF_WORKING_DIR }}
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ vars.AWS_REGION }}
-        run: |
-          terraform import aws_instance.docker-instance i-0b647b722ff4a87e0
-
       - name: Terraform plan
        # id: tfplan
         working-directory: ${{ env.TF_WORKING_DIR }}
