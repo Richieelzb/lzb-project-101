@@ -1,4 +1,4 @@
-/////////////////VPC 1 SG/////////////////
+/////////////////DOCKER SG/////////////////
 resource "aws_security_group" "sg-docker" {
   name   = "${local.Name}-sg-public"
   vpc_id = module.vpc1.vpc_id
@@ -49,5 +49,40 @@ resource "aws_security_group_rule" "allow-all" {
   security_group_id = aws_security_group.sg-docker.id
 }
 
+/////////////////KUBERNETES SG/////////////////
+resource "aws_security_group" "sg-kubernetes" {
+  name   = "${local.Name}-sg-public"
+  vpc_id = module.vpc1.vpc_id
+}
+
+resource "aws_security_group_rule" "bastion_sg" {
+  type              = "bastion-sg"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.sg-kubernetes.id
+}
+
+# Allow bastion to SSH into nodes (attach to node SG)
+resource "aws_security_group_rule" "allow_bastion_to_nodes_ssh" {
+  type              = "ingress"
+  description       = "SSH from bastion to nodes"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  security_group_id = module.eks.node_security_group_id # EKS module output
+  //security_group_id        = module.eks.node_security_group_id # requires EKS module output
+  source_security_group_id = aws_security_group.sg-kubernetes.id
+}
 
 
+# OR allow HTTPS from a CIDR
+resource "aws_security_group_rule" "eks_https_from_cidr" {
+  type              = "ingress"
+  from_port         = 443
+  to_port           = 443
+  protocol          = "tcp"
+  security_group_id = module.eks.cluster_security_group_id
+  cidr_blocks       = ["0.0.0.0/0"]
+}
