@@ -60,7 +60,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ vars.AWS_REGION }}
         run: |
-          terraform state rm aws_instance.docker-instance -input=false 
+          terraform state rm aws_instance.docker-instance
 
       - name: Terraform plan
        # id: tfplan
