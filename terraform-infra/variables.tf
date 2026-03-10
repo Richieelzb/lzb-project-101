@@ -99,5 +99,5 @@ variable "environment" {
 
 variable "business-division" {
   type    = string
-  default = "wallawalla"
+  default = "vodalvb"
 }
