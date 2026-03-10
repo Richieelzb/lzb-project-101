@@ -40,7 +40,7 @@ resource "aws_security_group_rule" "port-8888" {
   security_group_id = aws_security_group.sg-docker.id
 }
 
-resource "aws_security_group_rule" "allow-all" {
+resource "aws_security_group_rule" "allow-all-docker" {
   type              = "egress"
   from_port         = 0
   to_port           = 0
@@ -56,7 +56,7 @@ resource "aws_security_group" "sg-kubernetes" {
 }
 
 resource "aws_security_group_rule" "bastion_sg" {
-  type              = "bastion-sg"
+  type              = "ingress"
   from_port         = 22
   to_port           = 22
   protocol          = "tcp"
@@ -64,6 +64,14 @@ resource "aws_security_group_rule" "bastion_sg" {
   security_group_id = aws_security_group.sg-kubernetes.id
 }
 
+resource "aws_security_group_rule" "allow-all-k8s" {
+  type              = "egress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.sg-kubernetes.id
+}
 # Allow bastion to SSH into nodes (attach to node SG)
 resource "aws_security_group_rule" "allow_bastion_to_nodes_ssh" {
   type              = "ingress"
