@@ -20,7 +20,7 @@ resource "null_resource" "ec2_copy_manifests" {
    }
 
    provisioner "file" {
-    source      = "${path.module}/eks-resources/."
+    source      = "eks-resources/."
     destination = "/tmp/eks-resources/."
    }
 
