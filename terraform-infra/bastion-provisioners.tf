@@ -26,6 +26,11 @@ resource "null_resource" "ec2_copy_manifests" {
 
   provisioner "remote-exec" {
     inline = [
+      "unzip /tmp/manifests.zip -d /tmp/manifests"
+    ]
+  }
+  provisioner "remote-exec" {
+    inline = [
       # Update kubeconfig for this user
       "aws eks update-kubeconfig --region ap-south-1 --name ${module.eks.cluster_name}"
     ]
