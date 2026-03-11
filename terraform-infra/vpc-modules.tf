@@ -27,8 +27,20 @@ module "vpc1" {
     Type = "database-subnets"
   }
 
+  tags = {
+    "kubernetes.io/cluster/my-eks-cluster" = "shared"
+  }
+
+  public_subnet_tags = {
+    "kubernetes.io/role/elb" = "1"
+  }
+
+  private_subnet_tags = {
+    "kubernetes.io/role/internal-elb" = "1"
+  }
+
   enable_dhcp_options     = true
   map_public_ip_on_launch = true
 
-  tags = local.common_tags
+ // tags = local.common_tags
 }
