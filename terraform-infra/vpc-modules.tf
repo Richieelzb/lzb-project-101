@@ -42,5 +42,5 @@ module "vpc1" {
   enable_dhcp_options     = true
   map_public_ip_on_launch = true
 
- // tags = local.common_tags
+  // tags = local.common_tags
 }
