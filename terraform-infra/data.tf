@@ -25,3 +25,9 @@ data "aws_ami" "amzn2023_ami" {
   }
 
 }
+
+data "archive_file" "manifests_zip" {
+    type        = "zip"
+    source_dir  = "${path.module}/manifests"
+    output_path = "${path.module}/manifests.zip"
+}
