@@ -35,6 +35,9 @@ spec:
             - name: http
               containerPort: 8080
               protocol: TCP
+          envFrom:
+          - configMapRef:
+              name: catalog
           # readinessProbe: 
           #   httpGet:
           #     path: /health
