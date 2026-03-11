@@ -1,4 +1,4 @@
-resource "aws_instance" "docker-instance" {
+resource "aws_instance" "main-instance" {
   ami                  = data.aws_ami.amzn2023_ami.id
   instance_type        = var.instance-type-list[2]
   subnet_id            = module.vpc1.public_subnets[0]
