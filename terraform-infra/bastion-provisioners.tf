@@ -4,7 +4,7 @@ resource "null_resource" "ec2_copy_manifests" {
   triggers = {
     # Re-run when any file under eks-resources changes
     manifest_hash = sha1(join(",", [
-      for f in fileset(path.module, "eks-resources/**") : filesha1("${path.module}/${f}")
+      for f in fileset(path.module, "manifests/**") : filesha1("${path.module}/${f}")
     ]))
     # Re-run when cluster details change
     cluster_name = module.eks.cluster_name
