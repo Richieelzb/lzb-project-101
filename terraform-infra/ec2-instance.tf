@@ -1,6 +1,6 @@
 resource "aws_instance" "bastion-instance" {
   ami                    = data.aws_ami.amzn2023_ami.id
-  instance_type          = var.instance-type-list[2]
+  instance_type          = var.instance-type-list[1]
   subnet_id              = module.vpc1.public_subnets[0]
   key_name               = var.key-pair
   user_data              = "${file("${path.module}/bash-scripts/docker-install.sh")}\n${file("${path.module}/bash-scripts/kubectl-install.sh")}"
