@@ -26,9 +26,10 @@ resource "null_resource" "ec2_copy_manifests" {
 
   provisioner "remote-exec" {
     inline = [
-      "unzip /tmp/manifests.zip -d /tmp/manifests"
+      "unzip -o /tmp/manifests.zip -d /tmp/manifests"
     ]
   }
+
   provisioner "remote-exec" {
     inline = [
       # Update kubeconfig for this user
