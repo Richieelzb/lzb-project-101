@@ -13,6 +13,26 @@ resource "aws_iam_role" "bastion_role" {
   })
 }
 
+resource "aws_iam_role" "eks_role" {
+  name = "pod-identity-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Effect = "Allow"
+      Principal = {
+        Service = "pods.eks.amazonaws.com"
+      }
+      Action = "sts:AssumeRole"
+    }]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "pod_identity_s3_access" {
+  role       = aws_iam_role.eks_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+}
+
 resource "aws_iam_role_policy_attachment" "bastion_describe_cluster" {
   role       = aws_iam_role.bastion_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
