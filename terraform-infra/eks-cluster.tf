@@ -38,7 +38,7 @@ module "eks" {
       desired_size   = 2
       min_size       = 2
       max_size       = 3
-      instance_types = ["t3.medium"]
+      instance_types = ["t3.small"]
       subnet_ids     = module.vpc1.private_subnets
 
     }
