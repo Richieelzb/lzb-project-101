@@ -33,3 +33,23 @@ docker compose up -d
 
 # Stop all services (gracefully) (NOT NEEDED NOW - JUST FOR REFERENCE)
 docker compose down
+
+# Install the Secrets Store CSI Driver
+
+# Install the Secrets Store CSI Driver in the kube-system namespace:
+helm install csi-secrets-store \
+  secrets-store-csi-driver/secrets-store-csi-driver \
+  --namespace kube-system
+
+# List all Helm releases across namespaces:
+helm list --all-namespaces
+
+# List releases only in the kube-system namespace:
+helm list -n kube-system
+
+# Verify installation status, pods, and resources created by the release:
+helm status csi-secrets-store -n kube-system
+
+
+# Verify pods:
+kubectl get pods -n kube-system -l app=secrets-store-csi-driver
