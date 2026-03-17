@@ -37,4 +37,12 @@ resource "null_resource" "ec2_copy_manifests" {
     ]
   }
 
+  provisioner "remote-exec" {
+    inline = [
+      # Creating the kubernetes files
+      "kubectl create -f /tmp/manifests/"
+    ]
+  }
+
+
 }
