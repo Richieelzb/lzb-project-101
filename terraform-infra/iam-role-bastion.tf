@@ -33,6 +33,11 @@ resource "aws_iam_role" "eks_role" {
   })
 }
 
+resource "aws_iam_role_policy_attachment" "pod_identity_all_access" {
+  role       = aws_iam_role.eks_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
+}
+
 resource "aws_iam_role_policy_attachment" "pod_identity_s3_access" {
   role       = aws_iam_role.eks_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
