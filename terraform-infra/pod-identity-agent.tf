@@ -6,10 +6,18 @@ resource "aws_eks_addon" "pod_identity_agent" {
   //resolve_conflicts = "OVERWRITE"
 }
 
-resource "aws_eks_pod_identity_association" "example" {
+resource "aws_eks_pod_identity_association" "eks-aws-cli" {
   depends_on      = [aws_instance.bastion-instance, module.eks, null_resource.ec2_copy_manifests]
   cluster_name    = module.eks.cluster_name
   namespace       = "default"
   service_account = "aws-cli-sa"
   role_arn        = aws_iam_role.eks_role.arn
+}
+
+resource "aws_eks_pod_identity_association" "aws-secret-access" {
+  depends_on      = [aws_instance.bastion-instance, module.eks, null_resource.ec2_copy_manifests]
+  cluster_name    = module.eks.cluster_name
+  namespace       = "default"
+  service_account = "aws-mysql-sa"
+  role_arn        = aws_iam_role.secret_access_role.arn
 }
