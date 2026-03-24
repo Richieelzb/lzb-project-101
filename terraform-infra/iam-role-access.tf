@@ -53,6 +53,31 @@ resource "aws_iam_role" "secret_access_role" {
   })
 }
 
+resource "aws_iam_role" "ebs_csi_driver_role" {
+  name = "pod-identity-role-ebs-csi"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Principal = {
+          Service = "pods.eks.amazonaws.com"
+        }
+        Action = [
+          "sts:AssumeRole",
+          "sts:TagSession"
+        ]
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "pod_identity_ebs_csi_policy" {
+  role       = aws_iam_role.ebs_csi_driver_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEBSCSIDriverPolicy"
+}
+
 resource "aws_iam_role_policy_attachment" "pod_identity_secret_access" {
   role       = aws_iam_role.secret_access_role.name
   policy_arn = "arn:aws:iam::aws:policy/AWSSecretsManagerClientReadOnlyAccess"
