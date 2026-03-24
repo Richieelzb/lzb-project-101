@@ -1,4 +1,5 @@
 resource "aws_instance" "bastion-instance" {
+  depends_on    = [module.eks]
   ami           = data.aws_ami.amzn2023_ami.id
   instance_type = var.instance-type-list[1]
   subnet_id     = module.vpc1.public_subnets[0]
