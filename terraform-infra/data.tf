@@ -31,3 +31,32 @@ data "archive_file" "manifests_zip" {
   source_dir  = "${path.module}/manifests"
   output_path = "${path.module}/manifests.zip"
 }
+
+data "template_cloudinit_config" "config" {
+  gzip          = false
+  base64_encode = true
+
+  part {
+    filename     = "docker.sh"
+    content_type = "text/x-shellscript"
+    content      = file("${path.module}/bash-scripts/docker-install.sh")
+  }
+
+  part {
+    filename     = "kubectl.sh"
+    content_type = "text/x-shellscript"
+    content      = file("${path.module}/bash-scripts/kubectl-install.sh")
+  }
+
+  part {
+    filename     = "helm.sh"
+    content_type = "text/x-shellscript"
+    content      = file("${path.module}/bash-scripts/helm-install.sh")
+  }
+
+  part {
+    filename     = "secret-store.sh"
+    content_type = "text/x-shellscript"
+    content      = file("${path.module}/bash-scripts/secret-store-driver.sh")
+  }
+}
