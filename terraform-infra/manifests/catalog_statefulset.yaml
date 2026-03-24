@@ -24,7 +24,7 @@ spec:
         app.kubernetes.io/component: mysql
         app.kubernetes.io/owner: retail-store-sample
     spec:
-      ServiceAccountName: catalog-mysql-sa
+      serviceAccount: catalog-mysql-sa # Service Account
       containers:
         - name: mysql
           image: "public.ecr.aws/docker/library/mysql:8.0"

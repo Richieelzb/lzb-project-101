@@ -27,6 +27,7 @@ spec:
         app.kubernetes.io/component: service
         app.kubernetes.io/owner: retail-store-sample 
     spec:
+      serviceAccount: catalog-mysql-sa # Service Account
       securityContext:
         fsGroup: 1000
       containers:
