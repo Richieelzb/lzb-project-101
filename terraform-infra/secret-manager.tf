@@ -10,7 +10,7 @@ resource "aws_kms_key" "secret_kms" {
 # Create the secret container
 # ---------------------------------------------------------
 resource "aws_secretsmanager_secret" "mysql-secret-pwd" {
-  name        = "mysql-app-secret-2"
+  name        = "mysql-app-secret-3"
   description = "Secret for my application"
   kms_key_id  = aws_kms_key.secret_kms.arn
 
