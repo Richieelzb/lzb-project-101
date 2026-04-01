@@ -43,6 +43,4 @@ resource "null_resource" "ec2_copy_manifests" {
       "kubectl replace --force -f /tmp/manifests/"
     ]
   }
-
-
 }
