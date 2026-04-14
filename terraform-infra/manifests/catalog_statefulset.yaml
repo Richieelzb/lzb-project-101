@@ -52,21 +52,21 @@ spec:
               mountPath: /mnt/secrets-store
               readOnly: true  
       volumes:
-        # - name: data
-        #   emptyDir: {}
+        - name: data
+          emptyDir: {}
         - name: aws-secrets
           csi:
             driver: secrets-store.csi.k8s.io
             readOnly: true
             volumeAttributes:
               secretProviderClass: "catalog-db-secrets"
-  # Added for provisioning EBS Volumes              
-  volumeClaimTemplates:
-    - metadata:
-        name: data-ebs
-      spec:
-        accessModes: ["ReadWriteOnce"]
-        resources:
-          requests:
-            storage: 10Gi
-        storageClassName: ebs-sc    
+  # # Added for provisioning EBS Volumes              
+  # volumeClaimTemplates:
+  #   - metadata:
+  #       name: data-ebs
+  #     spec:
+  #       accessModes: ["ReadWriteOnce"]
+  #       resources:
+  #         requests:
+  #           storage: 10Gi
+  #       storageClassName: ebs-sc    
