@@ -11,7 +11,7 @@ terraform {
   }
 
   backend "s3" {
-    bucket = "terraform-bucket-lzb-001" //personal account
+    bucket = "terraform-bucket-lzb-001"
     key    = "lzb-project-101/terraform.tfstate"
     region = "ap-south-1"
   }
