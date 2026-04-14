@@ -60,13 +60,13 @@ spec:
             readOnly: true
             volumeAttributes:
               secretProviderClass: "catalog-db-secrets"
-  # # Added for provisioning EBS Volumes              
-  # volumeClaimTemplates:
-  #   - metadata:
-  #       name: data-ebs
-  #     spec:
-  #       accessModes: ["ReadWriteOnce"]
-  #       resources:
-  #         requests:
-  #           storage: 10Gi
-  #       storageClassName: ebs-sc    
+  # Added for provisioning EBS Volumes              
+  volumeClaimTemplates:
+    - metadata:
+        name: data-ebs
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 10Gi
+        storageClassName: ebs-sc    
