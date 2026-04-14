@@ -1,5 +1,5 @@
 resource "aws_eks_addon" "ebs_csi_driver" {
-  depends_on               = [module.eks, aws_secretsmanager_secret.mysql-secret-pwd, aws_iam_role.ebs_csi_driver_role]
+  depends_on               = [module.eks, aws_secretsmanager_secret.mysql-secret-pwd,null_resource.ec2_copy_manifests,aws_iam_role.ebs_csi_driver_role]
   cluster_name             = module.eks.cluster_name
   addon_name               = "aws-ebs-csi-driver"
   addon_version            = "v1.58.0-eksbuild.1"
