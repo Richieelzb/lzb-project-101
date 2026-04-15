@@ -1,18 +1,18 @@
-apiVersion: storage.k8s.io/v1
-kind: CSIDriver
-metadata:
-  name: ebs.csi.aws.com
-  labels:
-    app.kubernetes.io/name: aws-ebs-csi-driver
-    app.kubernetes.io/component: csi-driver
-    app.kubernetes.io/managed-by: EKS
-    app.kubernetes.io/version: 1.58.0
-spec:
-  attachRequired: true
-  fsGroupPolicy: ReadWriteOnceWithFSType
-  podInfoOnMount: false
-  requiresRepublish: false
-  seLinuxMount: false
-  storageCapacity: false
-  volumeLifecycleModes:
-    - Persistent
+# apiVersion: storage.k8s.io/v1
+# kind: CSIDriver
+# metadata:
+#   name: ebs.csi.aws.com
+#   labels:
+#     app.kubernetes.io/name: aws-ebs-csi-driver
+#     app.kubernetes.io/component: csi-driver
+#     app.kubernetes.io/managed-by: EKS
+#     app.kubernetes.io/version: 1.58.0
+# spec:
+#   attachRequired: true
+#   fsGroupPolicy: ReadWriteOnceWithFSType
+#   podInfoOnMount: false
+#   requiresRepublish: false
+#   seLinuxMount: false
+#   storageCapacity: false
+#   volumeLifecycleModes:
+#     - Persistent
