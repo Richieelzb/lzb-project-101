@@ -50,14 +50,14 @@ spec:
               name: catalog
           - secretRef:
               name: catalog-db
-          # readinessProbe: 
-          #   httpGet:
-          #     path: /health
-          #     port: 8080
-          # livenessProbe: 
-          #   httpGet:
-          #     path: /health
-          #     port: 8080                 
+          readinessProbe: 
+            httpGet:
+              path: /health
+              port: 8080
+          livenessProbe: 
+            httpGet:
+              path: /health
+              port: 8080                 
           resources:
             limits:
               cpu: 200m
