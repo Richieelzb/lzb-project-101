@@ -26,7 +26,7 @@ resource "aws_secretsmanager_secret" "mysql-secret-pwd" {
 resource "aws_secretsmanager_secret_version" "mysql_pwd_value" {
   secret_id = aws_secretsmanager_secret.mysql-secret-pwd.id
   secret_string = jsonencode({
-    MYSQL_USER     = "mysql-admin"
+    MYSQL_USER     = "mysqladmin"
     MYSQL_PASSWORD = "Pipeline11*"
   })
 }
