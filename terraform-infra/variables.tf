@@ -107,5 +107,5 @@ variable "business-division" {
 variable "db_name" {
   description = "Database name"
   type        = string
-  default     = "appdb"
+  default     = "catalogdb"
 }
