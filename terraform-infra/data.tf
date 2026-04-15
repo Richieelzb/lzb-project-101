@@ -36,11 +36,11 @@ data "template_cloudinit_config" "config" {
   gzip          = false
   base64_encode = true
 
-  part {
-    filename     = "docker.sh"
-    content_type = "text/x-shellscript"
-    content      = file("${path.module}/bash-scripts/docker-install.sh")
-  }
+  # part {
+  #   filename     = "docker.sh"
+  #   content_type = "text/x-shellscript"
+  #   content      = file("${path.module}/bash-scripts/docker-install.sh")
+  # }
 
   part {
     filename     = "kubectl.sh"
@@ -57,6 +57,24 @@ data "template_cloudinit_config" "config" {
   part {
     filename     = "secret-store.sh"
     content_type = "text/x-shellscript"
-    content      = file("${path.module}/bash-scripts/secret-store-driver.sh")
+    content      = file("${path.module}/bash-scripts/helm-repo-secrets-store-csi-driver.sh")
+  }
+
+   part {
+    filename     = "secret-store.sh"
+    content_type = "text/x-shellscript"
+    content      = file("${path.module}/bash-scripts/helm-secrets-manager.sh")
+  }
+
+   part {
+    filename     = "secret-store.sh"
+    content_type = "text/x-shellscript"
+    content      = file("${path.module}/bash-scripts/helm-secrets-store-csi-driver.sh")
+  }
+
+   part {
+    filename     = "secret-store.sh"
+    content_type = "text/x-shellscript"
+    content      = file("${path.module}/bash-scripts/kubectl-apply-store-csi-driver.sh")
   }
 }
