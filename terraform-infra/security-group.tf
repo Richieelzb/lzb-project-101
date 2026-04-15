@@ -97,6 +97,7 @@ resource "aws_security_group_rule" "eks_https_from_cidr" {
 
 /////////////////RDS SG/////////////////
 resource "aws_security_group" "rds" {
+  depends_on = [ aws_db_instance.mysql ]
   name        = "rds-mysql-sg"
   description = "Allow MySQL from EKS nodes"
   vpc_id      = module.vpc1.vpc_id
