@@ -94,3 +94,18 @@ resource "aws_security_group_rule" "eks_https_from_cidr" {
   security_group_id = module.eks.cluster_security_group_id
   cidr_blocks       = ["0.0.0.0/0"]
 }
+
+/////////////////RDS SG/////////////////
+resource "aws_security_group" "sg-rds-mysql" {
+  name   = "${local.Name}-sg-rds"
+  vpc_id = module.vpc1.vpc_id
+}
+
+resource "aws_security_group_rule" "rds_sg" {
+  type                     = "ingress"
+  from_port                = 3306
+  to_port                  = 3306
+  protocol                 = "tcp"
+  source_security_group_id = aws_security_group.sg-kubernetes.id
+  security_group_id        = aws_security_group.sg-rds-mysql.id
+}

@@ -87,7 +87,7 @@ variable "cluster_service_ipv4_cidr" {
   default     = null
 }
 
-//////generic/////////////////////////////
+////////////////////Generic/////////////////////////////
 variable "aws-region" {
   default = "ap-south-1"
 }
@@ -100,4 +100,12 @@ variable "environment" {
 variable "business-division" {
   type    = string
   default = "vodalvb"
+}
+
+////////////////////RDS Database///////////////////////
+
+variable "db_name" {
+  description = "Database name"
+  type        = string
+  default     = "appdb"
 }
