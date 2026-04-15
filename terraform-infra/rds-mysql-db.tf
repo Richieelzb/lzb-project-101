@@ -17,7 +17,7 @@ resource "aws_db_instance" "mysql" {
   publicly_accessible = false
 
   vpc_security_group_ids = [aws_security_group.sg-rds-mysql.id]
-  db_subnet_group_name   = module.vpc1.database_subnets
+  db_subnet_group_name   = module.vpc1.database_subnet_group
 
   backup_retention_period = 0
 
