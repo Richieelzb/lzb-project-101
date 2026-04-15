@@ -8,7 +8,9 @@ metadata:
     app.kubernetes.io/component: mysql
     app.kubernetes.io/owner: retail-store-sample
 spec:
-  clusterIP: None   # Headless service
+  type: ExternalName
+  externalName: mysql-8-rds.chss4wimk91g.ap-south-1.rds.amazonaws.com
+ # clusterIP: None   # Headless service
   ports:
     - port: 3306
       targetPort: mysql
