@@ -60,19 +60,19 @@ data "template_cloudinit_config" "config" {
     content      = file("${path.module}/bash-scripts/helm-repo-secrets-store-csi-driver.sh")
   }
 
-   part {
+  part {
     filename     = "secret-store.sh"
     content_type = "text/x-shellscript"
     content      = file("${path.module}/bash-scripts/helm-secrets-manager.sh")
   }
 
-   part {
+  part {
     filename     = "secret-store.sh"
     content_type = "text/x-shellscript"
     content      = file("${path.module}/bash-scripts/helm-secrets-store-csi-driver.sh")
   }
 
-   part {
+  part {
     filename     = "secret-store.sh"
     content_type = "text/x-shellscript"
     content      = file("${path.module}/bash-scripts/kubectl-apply-store-csi-driver.sh")
