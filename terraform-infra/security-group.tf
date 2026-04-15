@@ -96,24 +96,16 @@ resource "aws_security_group_rule" "eks_https_from_cidr" {
 }
 
 /////////////////RDS SG/////////////////
-resource "aws_security_group" "rds" {
-  depends_on  = [aws_db_instance.mysql]
-  name        = "rds-mysql-sg"
-  description = "Allow MySQL from EKS nodes"
-  vpc_id      = module.vpc1.vpc_id
+resource "aws_security_group" "sg-rds-mysql" {
+  name   = "${local.Name}-sg-rds"
+  vpc_id = module.vpc1.vpc_id
+}
 
-  ingress {
-    description     = "MySQL from EKS worker nodes"
-    from_port       = 3306
-    to_port         = 3306
-    protocol        = "tcp"
-    security_groups = [module.eks.node_security_group_id]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+resource "aws_security_group_rule" "rds_sg" {
+  type                     = "ingress"
+  from_port                = 3306
+  to_port                  = 3306
+  protocol                 = "tcp"
+  source_security_group_id = module.eks.node_security_group_id.id
+  security_group_id        = aws_security_group.sg-rds-mysql.id
 }
