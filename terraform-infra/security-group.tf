@@ -106,6 +106,6 @@ resource "aws_security_group_rule" "rds_sg" {
   from_port                = 3306
   to_port                  = 3306
   protocol                 = "tcp"
-  source_security_group_id = module.eks.node_security_group_id.id
+  source_security_group_id = module.eks.node_security_group_id
   security_group_id        = aws_security_group.sg-rds-mysql.id
 }
