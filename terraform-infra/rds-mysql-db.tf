@@ -1,5 +1,5 @@
 resource "aws_db_instance" "mysql" {
-  depends_on     = [aws_secretsmanager_secret.mysql-secret-pwd]
+  //depends_on     = [aws_secretsmanager_secret.mysql-secret-pwd]
   identifier     = "mysql-8-rds"
   engine         = "mysql"
   engine_version = "8.0"
