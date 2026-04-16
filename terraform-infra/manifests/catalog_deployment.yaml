@@ -48,8 +48,8 @@ spec:
           envFrom:
           - configMapRef:
               name: catalog
-          - secretRef:
-              name: catalog-db
+          # - secretRef:
+          #     name: catalog-db
           readinessProbe: 
             httpGet:
               path: /health
