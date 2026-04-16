@@ -53,3 +53,10 @@ helm status csi-secrets-store -n kube-system
 
 # Verify pods:
 kubectl get pods -n kube-system -l app=secrets-store-csi-driver
+
+# Connecting to the Database
+
+kubectl run mysql-client --rm -it \
+  --image=mysql:8.0 \
+  --restart=Never \
+  -- mysql -h mydb3.cxojydmxwly6.us-east-1.rds.amazonaws.com -u mysqladmin -p
