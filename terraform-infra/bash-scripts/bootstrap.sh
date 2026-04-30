@@ -1,5 +1,7 @@
 #!/bin/bash
-set -xe
+
+exec > >(tee /var/log/userdata.log|logger -t userdata -s 2>/dev/console) 2>&1
+set -euxo pipefail
 
 # Run each script in order
 /bin/bash /var/lib/cloud/scripts/per-instance/docker-install.sh
