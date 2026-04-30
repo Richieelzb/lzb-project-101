@@ -1,4 +1,7 @@
 #!/bin/bash
+exec > >(tee /var/log/userdata.log|logger -t userdata -s 2>/dev/console) 2>&1
+set -euxo pipefail
+
 
 sudo dnf update -y
 sudo dnf install docker -y
