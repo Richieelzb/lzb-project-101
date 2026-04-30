@@ -1,5 +1,5 @@
 resource "null_resource" "ec2_copy_manifests" {
-  depends_on = [aws_instance.bastion-instance, module.eks]
+  depends_on = [module.eks]
 
   triggers = {
     # Re-run when any file under eks-resources changes

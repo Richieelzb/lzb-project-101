@@ -1,15 +1,15 @@
-resource "aws_instance" "bastion-instance" {
-  depends_on    = [module.eks]
-  ami           = data.aws_ami.amzn2023_ami.id
-  instance_type = var.instance-type-list[1]
-  subnet_id     = module.vpc1.public_subnets[0]
-  key_name      = var.key-pair
-  //user_data              = "${file("${path.module}/bash-scripts/docker-install.sh")}\n${file("${path.module}/bash-scripts/kubectl-install.sh")}\n${file("${path.module}/bash-scripts/helm-install.sh")}\n${file("${path.module}/bash-scripts/secret-store-driver.sh")}"
-  user_data              = data.template_cloudinit_config.config.rendered
-  iam_instance_profile   = aws_iam_instance_profile.bastion_profile.name
-  vpc_security_group_ids = [aws_security_group.sg-docker.id, aws_security_group.sg-kubernetes.id]
+# resource "aws_instance" "bastion-instance" {
+#   depends_on    = [module.eks]
+#   ami           = data.aws_ami.amzn2023_ami.id
+#   instance_type = var.instance-type-list[1]
+#   subnet_id     = module.vpc1.public_subnets[0]
+#   key_name      = var.key-pair
+#   //user_data              = "${file("${path.module}/bash-scripts/docker-install.sh")}\n${file("${path.module}/bash-scripts/kubectl-install.sh")}\n${file("${path.module}/bash-scripts/helm-install.sh")}\n${file("${path.module}/bash-scripts/secret-store-driver.sh")}"
+#   user_data              = data.template_cloudinit_config.config.rendered
+#   iam_instance_profile   = aws_iam_instance_profile.bastion_profile.name
+#   vpc_security_group_ids = [aws_security_group.sg-docker.id, aws_security_group.sg-kubernetes.id]
 
-  tags = {
-    Name = "${local.Name}-eks-bastion"
-  }
-}
+#   tags = {
+#     Name = "${local.Name}-eks-bastion"
+#   }
+# }
