@@ -7,7 +7,7 @@ resource "aws_eks_addon" "pod_identity_agent" {
 }
 
 resource "aws_eks_pod_identity_association" "eks-aws-cli" {
-  //depends_on      = [aws_instance.bastion-instance, module.eks, null_resource.ec2_copy_manifests]
+  depends_on      = [aws_instance.bastion-instance, module.eks, null_resource.ec2_copy_manifests]
   cluster_name    = module.eks.cluster_name
   namespace       = "default"
   service_account = "aws-cli-sa"
@@ -15,7 +15,7 @@ resource "aws_eks_pod_identity_association" "eks-aws-cli" {
 }
 
 resource "aws_eks_pod_identity_association" "aws-secret-access" {
-  //depends_on      = [aws_instance.bastion-instance, module.eks, null_resource.ec2_copy_manifests]
+  depends_on      = [aws_instance.bastion-instance, module.eks, null_resource.ec2_copy_manifests]
   cluster_name    = module.eks.cluster_name
   namespace       = "default"
   service_account = "catalog-mysql-sa"
